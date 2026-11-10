@@ -36,3 +36,21 @@ function fecharMenu() {
         icon.classList.add('fa-bars');
     }, 150);
 }
+
+// Mostrar ou ocultar o botão do WhatsApp baseado na rolagem da página
+window.addEventListener('scroll', function() {
+    const whatsappBtn = document.querySelector('.whatsapp-float');
+    const heroSection = document.querySelector('.hero-section');
+    
+    if (!whatsappBtn || !heroSection) return;
+
+    // Pega a altura total da seção Hero
+    const heroHeight = heroSection.offsetHeight;
+    
+    // Se a rolagem da página passou da altura da Hero (entrou na 2ª seção)
+    if (window.scrollY > heroHeight - 100) {
+        whatsappBtn.classList.add('show');
+    } else {
+        whatsappBtn.classList.remove('show');
+    }
+});
