@@ -84,59 +84,86 @@
     }   
 }
 
-@media (max-width: 750px){
+/* =========================================
+   AJUSTES DE RESPONSIVIDADE PARA TELAS PEQUENAS (MOBILE)
+   ========================================= */
+
+@media (max-width: 750px) {
     .hero-section {
         background-image:url(/fotos/FundoDra3.png);
-        padding-top: 150px; /* Ajuste para compensar o header fixo */    
+        min-height: 100vh;
+        padding-top: 120px; /* Reduz o topo para dar mais espaço */
+        padding-bottom: 30px; /* Reduz o respiro embaixo para a caixa não vazar */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-container {
+        gap: 15px; /* Aproxima os blocos para economizar espaço vertical */
     }
 
     .hero-title {
-    font-size: 40px;
+        font-size: 32px !important; /* Tamanho compacto para garantir que caiba */
+        line-height: 1.15;
+        margin-bottom: 10px;
     }
-    
+
     .hero-description {
-        font-size: 15px;
-        margin-bottom: 20px;
+        font-size: 13.5px;
+        margin-bottom: 15px;
+        line-height: 1.4;
     }
 
-    .hero-actions{
+    .hero-actions {
         flex-direction: column;
-        text-align: center;
-        bottom: auto;
-        left: auto;
-        width: 80%;
-        margin-top: 20px;
+        gap: 10px;
+        margin-bottom: 15px; /* Reduz a distância para a barra de diferenciais */
+        width: 100%;
     }
-    
-}   
 
-@media (max-width: 400px){
-    .hero-section {
-        background-image:url(/fotos/FundoDra4.png);
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        font-size: 14px;
     }
+
+    /* Traz a caixinha de volta para dentro do fluxo da Hero sem vazar */
+    .hero-features-container {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        margin-top: 10px !important;
+        height: 55px !important; /* Reduz levemente a altura no celular */
+        padding: 8px 10px !important;
+    }
+
+    .feature-item {
+        font-size: 12px;
+        gap: 8px;
+        padding-right: 15px;
+    }
+
+    .feature-item i {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 400px) {
     .hero-title {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 12px;
-    width: 60%;
+        font-size: 26px !important;
     }
     
-.hero-badge {
-    font-size: 10px;
-    width: 60vw;
+    .hero-badge {
+        font-size: 9.5px;
+        padding: 4px 12px;
+        margin-bottom: 8px;
     }
 
-.hero-content {
-    max-height: 100%;
-    width: 90%;
+    .hero-description {
+        font-size: 12.5px;
+        margin-bottom: 10px;
     }
-.hero-description {
-    font-size: 14px;
-    width: 50%;
-    line-height: 1.0;
-    margin-bottom: 20px;
-    text-shadow: 0 0 30px #ffffff;
-    }
- 
-}           
+}
+
+
