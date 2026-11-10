@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Médico</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsividade.css">
+    <script src="/javascript/script.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#inicio" class="logo-link">
+                <div class="logo-txt">
+                    <span class="logo-title">DRA. THALIA FARIAS</span>
+                    <span class="logo-subtitle">ENDOCRINOLOGISTA • CRM 123456-BA</span>
+                </div>
+            </a>
+        
+        <!--MENU DESKTOP-->
+        <nav class="menu-desktop" id="menuMobile">
+            <ul>
+                <li><a href="#inicio" onclick="fecharMenu()">Início</a></li>
+                <li><a href="#sobre" onclick="fecharMenu()">Sobre</a></li>
+                <li><a href="#depoimentos" onclick="fecharMenu()">Depoimentos</a></li>
+                <li><a href="#especialidade" onclick="fecharMenu()">Especialidade</a></li>
+                <li><a href="#duvidas" onclick="fecharMenu()">Dúvidas</a></li>
+                <li><a href="#contato" onclick="fecharMenu()">Contato</a></li>
+            </ul>
+        </nav>
+        
+        <!-- BOTÃO HAMBÚRGUER COM ID E CLIQUE -->
+            <div class="menu-hamburguer" id="btnMenu" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <!-- BOTÃO AGENDAR (DESKTOP) -->
+            <div class="header-action">
+                <a href="#contato" class="btn-agendar">
+                    <span>Vamos cuidar da sua saúde?</span>
+                </a>
+            </div>
+            
+        </div>    
+    </header>
+
+    <!-- SEÇÃO HERO -->
+    <section class="hero-section" id="inicio">
+        <div class="hero-container">
+            <!-- COLUNA DE TEXTOS -->
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>Cuidado especializado e humanizado</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Equilíbrio hormonal para uma vida <span class="highlight">mais saudável</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Acompanhamento endocrinológico completo e personalizado.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#contato" class="btn-primary">Agendar Consulta</a>
+                    <a href="#sobre" class="btn-secondary">Conhecer a Médica</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+        <a href="https://wa.me/557391777622?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20as%20consultas%20com%20a%20Dra.%20Thalia%20Farias." 
+        target="_blank" 
+        class="whatsapp-float" 
+        aria-label="Fale conosco no WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    
+</body>
+</html>
+
+
