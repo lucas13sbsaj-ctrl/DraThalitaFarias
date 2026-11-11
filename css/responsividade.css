@@ -89,18 +89,35 @@
    ========================================= */
 
 @media (max-width: 750px) {
+    @media (max-width: 750px) {
     .hero-section {
-        background-image:url(/fotos/FundoDra3.png);
-        min-height: 100vh;
-        padding-top: 120px; /* Reduz o topo para dar mais espaço */
-        padding-bottom: 30px; /* Reduz o respiro embaixo para a caixa não vazar */
+        /* Usa '100dvh' (Dynamic Viewport Height) para se adaptar perfeitamente a celulares com telas longas */
+        min-height: 100dvh;
+        background-image: url(/fotos/FundoDra3.png);
+        height: 100dvh;
+        padding-top: 100px;
         position: relative;
         overflow: hidden;
     }
 
     .hero-container {
-        gap: 15px; /* Aproxima os blocos para economizar espaço vertical */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Distribui os elementos: texto em cima, carrossel embaixo */
+        padding-bottom: 20px; /* Margem de segurança na base */
     }
+
+    /* Ancora a barra de diferenciais de forma absoluta na base exata da tela longa */
+    .hero-features-container {
+        position: absolute !important;
+        bottom: 15px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 94% !important;
+        margin-top: 0 !important;
+    }
+}
 
     .hero-title {
         font-size: 32px !important; /* Tamanho compacto para garantir que caiba */
