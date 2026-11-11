@@ -346,20 +346,26 @@ header {
    BARRA DE DIFERENCIAIS / CARROSSEL (MOBILE E DESKTOP)
    ========================================= */
 .hero-features-container {
-    max-width: 1380px;
-    width: 100%;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    width: 94%;
+    max-width: 1100px;
+    height: 52px;
     display: flex;
     align-items: center;
-    min-height: 60px;
-    background-color: rgba(249, 246, 240, 0.92);
+    background-color: rgba(249, 246, 240, 0.94);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(124, 94, 84, 0.15);
-    border-radius: 25px;
-    padding: 14px 18px;
-    box-shadow: 0 10px 30px rgba(94, 74, 74, 0.404);
+    padding: 0 15px;
+    box-shadow: 0 10px 30px rgba(94, 74, 74, 0.3);
     overflow: hidden;
-    z-index: 20; /* Fica acima das imagens de fundo */
+    z-index: 20;
+    border-radius: 20px;
+    /* Animação de entrada suave (fade + subida) */
+    animation: fadeInSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    opacity: 0;
 }
 
 .hero-features-track {
@@ -367,19 +373,9 @@ header {
     align-items: center;
     gap: 40px;
     width: max-content;
-    /* Ajuste o tempo (ex: 35s ou 40s) para a velocidade ficar bem suave com mais itens */
     animation: scrollInfinito 35s linear infinite;
 }
 
-/* O -50% agora move exatamente metade dos 4 conjuntos, criando um ciclo perpétuo perfeito sem buracos */
-@keyframes scrollInfinito {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
 .hero-features-container:hover .hero-features-track {
     animation-play-state: paused;
 }
@@ -400,6 +396,28 @@ header {
 .feature-item i {
     font-size: 20px;
     color: #7c5e54;
+}
+
+/* Keyframes do carrossel infinito */
+@keyframes scrollInfinito {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Keyframes da animação de entrada (de baixo para cima) */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 
