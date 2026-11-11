@@ -819,47 +819,133 @@ header {
 
 
 /* =========================================
-   ESTILOS DO RODAPÉ (VERSÃO CLEAN)
+   ESTILOS DO RODAPÉ (4 COLUNAS)
    ========================================= */
 .footer-section {
-    padding: 60px 20px;
-    background-color: #58473a; /* Mantém exatamente o mesmo fundo da página */
-    border-top: 1px solid rgba(88, 71, 58, 0.08);
-    text-align: center;
+    background-color: #58473a; /* Tom terroso escuro oficial da paleta */
+    color: #F9F6F0;
+    padding: 70px 20px;
+    font-family: 'Outfit', sans-serif;
 }
 
 .footer-container {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas bem distribuídas */
+    gap: 40px;
 }
 
-.footer-section h3 {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.3rem;
-    color: #ece5e0;
+/* Estilo geral das colunas */
+.footer-col h4,
+.footer-col h5 {
+    font-size: 1.1rem;
     font-weight: 500;
-    margin-bottom: 6px;
-    letter-spacing: 1px;
-}
-
-.footer-section p {
-    font-size: 0.9rem;
-    color: #a39a93;
+    color: #F9F6F0;
     margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
-.footer-divider {
-    width: 40px;
-    height: 2px;
-    background-color: #d4a373; /* Tom dourado suave da paleta */
-    margin: 0 auto 20px auto;
-    border-radius: 2px;
+.footer-col p, 
+.footer-col span, 
+.footer-col a {
+    font-size: 0.9rem;
+    color: #d8cecd;
+    line-height: 1.6;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
 }
 
-.footer-copy {
+.footer-col a:hover {
+    color: #d4a373; /* Tom dourado de destaque ao passar o mouse */
+}
+
+/* Coluna 1: Marca e Contatos */
+.footer-logo-circle {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(249, 246, 240, 0.1);
+    border: 1px solid rgba(249, 246, 240, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #F9F6F0;
+    margin-bottom: 15px;
+}
+
+.footer-col-brand h4 {
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+}
+
+.footer-col-brand > p {
     font-size: 0.85rem;
-    color: #9c8a79;
-    margin-bottom: 0 !important;
+    color: #d4a373;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.footer-info-list {
+    border-top: 1px solid rgba(249, 246, 240, 0.12);
+    padding-top: 15px;
+}
+
+/* Coluna 2: Menu */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+/* Coluna 3: Copyright */
+.footer-legal-text {
+    font-size: 0.85rem;
+    color: #c9bcba;
+    margin-bottom: 15px;
+}
+
+/* Coluna 4: Endereço e Dev */
+.footer-address {
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+    color: #c9bcba;
+}
+
+.footer-dev-title {
+    margin-bottom: 5px !important;
+}
+
+.footer-dev-name {
+    color: #d4a373 !important;
+    font-weight: 500;
+}
+
+/* Responsivo para Tablets e Celulares */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
+        gap: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* 1 coluna empilhada em celulares */
+        text-align: left;
+    }
+    .footer-section {
+        padding: 50px 20px;
+    }
 }
 
 /* =========================================
