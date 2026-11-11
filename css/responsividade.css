@@ -1,15 +1,15 @@
 /* =========================================
-   RESPONSIVIDADE DO HEADER (OCULTAR MENU DESKTOP)
+   RESPONSIVIDADE (TABLETS E MOBILE)
    ========================================= */
 @media (max-width: 1032px) {
     .menu-desktop {
-        display: flex; /* Mantemos flex para a transição funcionar, mas escondemos com opacidade e visibility */
+        display: flex;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-10px); /* Começa levemente deslocado para cima */
+        transform: translateY(-10px);
         position: absolute;
         top: 80px;
-        left: 0px;
+        left: 0;
         width: 100%;
         background-color: rgb(249, 246, 240);
         backdrop-filter: blur(12px);
@@ -20,23 +20,19 @@
         box-shadow: 0 15px 30px rgba(56, 46, 46, 0.459);
         border-radius: 0px 0px 16px 16px;
         z-index: 999;
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); /* Animação super suave tipo "spring" */
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* QUANDO ATIVADO: O menu desce e aparece suavemente */
     .menu-desktop.active {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
 
-    /* Restante dos seus estilos de lista mobile continuam iguais... */
     .menu-desktop ul {
         flex-direction: column;
         align-items: center;
         gap: 20px;
-        list-style: none;
-        padding: 0;
         width: 100%;
     }
 
@@ -47,17 +43,9 @@
         padding-bottom: 12px;
     }
 
-    .menu-desktop ul li:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
     .menu-desktop ul li a {
         font-size: 17px;
-        font-weight: 500;
-        color: #5e4a4a;
         display: block;
-        width: 100%;
     }
 
     .header-action {
@@ -67,92 +55,48 @@
     .menu-hamburguer {
         display: block; 
     }
-}
 
-/* =========================================
-   AJUSTES DE RESPONSIVIDADE DA HERO (MOBILE)
-   ========================================= */
-
-@media (max-width: 1100px) {
     .hero-section {
-        background-image:url(/fotos/FundoDra2.png);
+        background-image: url(/fotos/FundoDra2.png);
     }
-    .hero-content {
-    max-width: 1380px;
-    width: 70%;
-    height: 100vh;
-    }   
-}
-
-/* =========================================
-   AJUSTES DE RESPONSIVIDADE PARA TELAS PEQUENAS (MOBILE)
-   ========================================= */
-
-@media (max-width: 750px) {
-    @media (max-width: 750px) {
-    .hero-section {
-        /* Usa '100dvh' (Dynamic Viewport Height) para se adaptar perfeitamente a celulares com telas longas */
-        min-height: 100dvh;
-        background-image: url(/fotos/FundoDra3.png);
-        height: 100dvh;
-        padding-top: 100px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-container {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Distribui os elementos: texto em cima, carrossel embaixo */
-        padding-bottom: 20px; /* Margem de segurança na base */
-    }
-
-    /* Ancora a barra de diferenciais de forma absoluta na base exata da tela longa */
-    .hero-features-container {
-        position: absolute !important;
-        bottom: 15px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 94% !important;
-        margin-top: 0 !important;
-    }
-}
 
     .hero-title {
-        font-size: 32px !important; /* Tamanho compacto para garantir que caiba */
+        font-size: 32px !important;
         line-height: 1.15;
-        margin-bottom: 10px;
+        max-width: 75%;
     }
+}
+
+@media (max-width: 750px) {
+    .hero-section {
+        background-image: url(/fotos/FundoDra3.png);
+        padding-top: 100px;
+    }
+
+    
 
     .hero-description {
         font-size: 13.5px;
-        margin-bottom: 15px;
-        line-height: 1.4;
+        margin-bottom: 20px;
+        max-width: 74%;
     }
 
     .hero-actions {
         flex-direction: column;
         gap: 10px;
-        margin-bottom: 15px; /* Reduz a distância para a barra de diferenciais */
-        width: 100%;
+        width: 60%;
+        max-width: 600px;
     }
 
     .btn-primary, .btn-secondary {
-        padding: 10px 20px;
+        width: 100%;
+        padding: 12px 20px;
         font-size: 14px;
     }
 
-    /* Traz a caixinha de volta para dentro do fluxo da Hero sem vazar */
     .hero-features-container {
-        position: relative !important;
-        bottom: auto !important;
-        left: auto !important;
-        transform: none !important;
-        width: 100% !important;
-        margin-top: 10px !important;
-        height: 55px !important; /* Reduz levemente a altura no celular */
-        padding: 8px 10px !important;
+        height: 46px !important;
+        padding: 0 10px !important;
     }
 
     .feature-item {
@@ -166,21 +110,6 @@
     }
 }
 
-@media (max-width: 400px) {
-    .hero-title {
-        font-size: 26px !important;
-    }
+@media (max-width: 400px) {    
     
-    .hero-badge {
-        font-size: 9.5px;
-        padding: 4px 12px;
-        margin-bottom: 8px;
-    }
-
-    .hero-description {
-        font-size: 12.5px;
-        margin-bottom: 10px;
-    }
 }
-
-

@@ -1,27 +1,24 @@
-*{
+/* =========================================
+   CONFIGURAÇÕES GERAIS E RESET
+   ========================================= */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Outfit", sans-serif;
-   
 }
 
-
-/* Comportamento de rolagem suave na página */
 html {
     scroll-behavior: smooth;
 }
 
-/* Estilização base do corpo */
 body {
-    font-family: 'Montserrat', sans-serif;
     background-color: #F9F6F0;
 }
 
-
-/*CABEÇALHO E NAVEGAÇÃO*/
-
-
+/* =========================================
+   CABEÇALHO E NAVEGAÇÃO
+   ========================================= */
 header {
     position: fixed;
     top: 0;
@@ -46,25 +43,25 @@ header {
     justify-content: space-between;
 }
 
-/*LOGO*/
-
 .logo-link {
     display: flex;
     align-items: center;
     gap: 12px;
     text-decoration: none;
 }
+
 .logo-txt {
     display: flex;
     flex-direction: column;
 }
 
-.logo-title{
+.logo-title {
     font-size: 18px;
     font-weight: 700;
     color: #5e4a4a;
     letter-spacing: 0.5px;
 }
+
 .logo-subtitle {
     font-size: 9.5px;
     font-weight: 500;
@@ -73,30 +70,24 @@ header {
     margin-top: 2px;
 }
 
-/*LOGO*/
-
-/*NAV*/
-
 .menu-desktop {
     display: flex;
     align-items: center;
 }
 
 .menu-hamburguer {
-    display: none; /* Fica oculto no computador por padrão */
+    display: none;
     font-size: 26px;
-    color: #5e4a4a; /* Cor marrom escuro da sua paleta */
+    color: #5e4a4a;
     cursor: pointer;
     z-index: 1001;
 }
 
-/* Transição suave para o ícone do menu */
 .menu-hamburguer i {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
 }
 
-/* Quando o botão estiver ativo (com o X), ele rotaciona no sentido horário em 180° ou 360° */
 .menu-hamburguer.ativo i {
     transform: rotate(360deg);
 }
@@ -114,6 +105,7 @@ header {
     font-size: 16px;
     font-weight: 400;
 }
+
 .menu-desktop ul li a::after {
     content: '';
     position: absolute;
@@ -121,25 +113,20 @@ header {
     bottom: -4px;
     width: 100%;
     height: 1px;
-
     transform-origin: center;
     transform: scaleX(0);
-
     border-radius: 25px;
     background-color: #000000;
     transition: transform 0.3s ease;
 }
+
 .menu-desktop ul li a:hover::after {
     transform: scaleX(1);
 }
-.menu-desktop ul li a:hover{
+
+.menu-desktop ul li a:hover {
     color: #141110;
 }
-
-/*NAV*/
-
-
-/*BOTÃO AGENDAR (DESKTOP)*/
 
 .btn-agendar {
     display: block;
@@ -158,19 +145,18 @@ header {
     opacity: 0.95;
 }
 
-/*BOTÃO AGENDAR (DESKTOP)*/
-
 /* =========================================
-   SEÇÃO HERO
+   SEÇÃO HERO (RESOLVE O PROBLEMA DE TELAS 4K)
    ========================================= */
 .hero-section {
-    height: 100vh;
-    min-height: 100vh;
-    padding-top: 140px; /* Compensa o header fixo de 80px + respiro */
-    padding-bottom: 90px;
-    background-color: #F9F6F0; /* Mantém o fundo off-water terroso */
-    overflow: visible;
-    background-image:url(/fotos/FundoDra.png);
+    width: 100%;
+    min-height: 650px;
+    padding-top: 120px;
+    padding-bottom: 50px;
+    background-color: #F9F6F0;
+    position: relative;
+    overflow: hidden;
+    background-image: url(/fotos/FundoDra.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -183,20 +169,17 @@ header {
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    gap: 60px;
-
-    display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Empurra o conteúdo e segura o carrossel na base */
 }
 
-.hero-content{
-    max-width: 1380px;
+.hero-content {
+    max-width: 800px;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* Badge Superior */
 .hero-badge {
     display: inline-block;
     width: fit-content;
@@ -211,49 +194,50 @@ header {
     letter-spacing: 0.5px;
 }
 
-/* Título e Textos */
-
-
-.hero-title .highlight {
-    color: #9e6464; /* Tom argila/terracota da paleta */
-    text-shadow: 0 0 20px #FFFFFF;
+.hero-title {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #58473a;
+    margin-bottom: 20px;
 }
 
-.hero-title {
-   max-width: 800px;
-   font-size: 70px;
-   font-weight: 700;
-   line-height: 1.2;
-   color: #58473a;
-   margin-bottom: 20px;
-   line-height: 1;
+.hero-title .highlight {
+    color: #9e6464;
+    text-shadow: 0 0 20px #FFFFFF;
 }
 
 .hero-description {
     font-size: 16px;
     color: #58473a;
     line-height: 1.6;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     max-width: 600px;
     text-shadow: 0 0 30px #FFFFFF;
 }
 
-/* Botões da Hero */
 .hero-actions {
     display: flex;
     gap: 16px;
-    margin-bottom: 45px;
+    margin-bottom: 25px;
 }
 
-.btn-primary {
-    background-color: #a4a87e;
-    color: #FFFFFF;
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 14px 28px;
     border-radius: 50px;
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;
     transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #a4a87e;
+    color: #FFFFFF;
     box-shadow: 0 4px 12px rgba(124, 94, 84, 0.2);
 }
 
@@ -263,95 +247,30 @@ header {
 }
 
 .btn-secondary {
-    background-color: #ffffff44;
+    background-color: rgba(255, 255, 255, 0.274);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(124, 94, 84, 0.2);
     color: #251d1d;
-    padding: 14px 28px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.349);
+    background-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
 }
 
-/* Alinhamento dos ícones dentro dos botões */
-.btn-primary, 
-.btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Espaço entre o ícone e o texto */
-    transition: all 0.3s ease;
-}
-
-/* Efeito suave ao passar o mouse na seta */
 .btn-secondary:hover i {
-    transform: translateX(4px); /* A seta dá uma leve movimentada para a direita */
+    transform: translateX(4px);
     transition: transform 0.3s ease;
 }
 
-
 /* =========================================
-   BOTÃO FLUTUANTE DO WHATSAPP (FLUTUANDO)
-   ========================================= */
-.whatsapp-float {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-    background-color: #25d36581;
-    backdrop-filter: blur(5px);
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    z-index: 998;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    /* Animação com tempo um pouco mais longo e curva suave (ease-in-out) */
-    animation: flutuarSuave 4s ease-in-out infinite;
-}
-
-
-
-.whatsapp-float:hover {
-    background-color: #25d365;
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
-    color: #ffffff;
-    animation-play-state: paused;
-}
-
-/* Keyframes ajustado para uma flutuação orgânica e leve */
-@keyframes flutuarSuave {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* =========================================
-   BARRA DE DIFERENCIAIS / CARROSSEL (MOBILE E DESKTOP)
+   BARRA DE DIFERENCIAIS / CARROSSEL INFINITO
    ========================================= */
 .hero-features-container {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    width: 94%;
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1380px;
     height: 52px;
+    margin: 0 auto; /* Garante que fique perfeitamente centralizado */
     display: flex;
     align-items: center;
     background-color: rgba(249, 246, 240, 0.94);
@@ -362,8 +281,10 @@ header {
     box-shadow: 0 10px 30px rgba(94, 74, 74, 0.3);
     overflow: hidden;
     z-index: 20;
-    border-radius: 20px;
-    /* Animação de entrada suave (fade + subida) */
+    border-radius: 25px;
+    margin-top: 150px;
+
+    /* Animação suave de entrada */
     animation: fadeInSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     opacity: 0;
 }
@@ -380,7 +301,6 @@ header {
     animation-play-state: paused;
 }
 
-/* Cada item do diferencial */
 .feature-item {
     display: flex;
     align-items: center;
@@ -398,42 +318,55 @@ header {
     color: #7c5e54;
 }
 
-/* Keyframes do carrossel infinito */
 @keyframes scrollInfinito {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
-/* Keyframes da animação de entrada (de baixo para cima) */
 @keyframes fadeInSlideUp {
     0% {
         opacity: 0;
-        transform: translateX(-50%) translateY(40px);
+        transform: translateY(30px);
     }
     100% {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
     }
 }
-
-
 
 /* =========================================
-   AJUSTES ESPECÍFICOS PARA TELAS MENORES (MOBILE)
+   BOTÃO FLUTUANTE DO WHATSAPP
    ========================================= */
-@media (max-width: 750px) {
-
-    .feature-item {
-        font-size: 13px;
-        gap: 8px;
-        padding-right: 20px;
-    }
-
-    .feature-item i {
-        font-size: 17px;
-    }
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    z-index: 998;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+.whatsapp-float.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
+}
+

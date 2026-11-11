@@ -4,16 +4,14 @@ function toggleMenu() {
     const btn = document.getElementById('btnMenu');
     const icon = btn.querySelector('i');
     
-    // Alterna a classe 'active' no menu e 'ativo' no botão
     nav.classList.toggle('active');
     btn.classList.toggle('ativo');
     
-    // Alterna o ícone entre barras (fa-bars) e o "X" (fa-xmark) no momento certo da rotação
     if (nav.classList.contains('active')) {
         setTimeout(() => {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-xmark');
-        }, 150); // Troca o desenho no meio da animação para ficar natural
+        }, 150);
     } else {
         setTimeout(() => {
             icon.classList.remove('fa-xmark');
@@ -22,7 +20,7 @@ function toggleMenu() {
     }
 }
 
-// Função para fechar o menu automaticamente quando clicar em algum link
+// Função para fechar o menu automaticamente ao clicar em links
 function fecharMenu() {
     const nav = document.getElementById('menuMobile');
     const btn = document.getElementById('btnMenu');
@@ -37,18 +35,16 @@ function fecharMenu() {
     }, 150);
 }
 
-// Mostrar ou ocultar o botão do WhatsApp baseado na rolagem da página
+// Lógica de exibição do botão flutuante do WhatsApp
 window.addEventListener('scroll', function() {
     const whatsappBtn = document.querySelector('.whatsapp-float');
     const heroSection = document.querySelector('.hero-section');
     
     if (!whatsappBtn || !heroSection) return;
 
-    // Pega a altura total da seção Hero
     const heroHeight = heroSection.offsetHeight;
     
-    // Se a rolagem da página passou da altura da Hero (entrou na 2ª seção)
-    if (window.scrollY > heroHeight - 100) {
+    if (window.scrollY > heroHeight - 150) {
         whatsappBtn.classList.add('show');
     } else {
         whatsappBtn.classList.remove('show');
