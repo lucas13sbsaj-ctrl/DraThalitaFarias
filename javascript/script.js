@@ -35,16 +35,14 @@ function fecharMenu() {
     }, 150);
 }
 
-// Lógica de exibição do botão flutuante do WhatsApp
+// Mostrar ou ocultar o botão do WhatsApp baseado na rolagem da página
 window.addEventListener('scroll', function() {
     const whatsappBtn = document.querySelector('.whatsapp-float');
-    const heroSection = document.querySelector('.hero-section');
     
-    if (!whatsappBtn || !heroSection) return;
+    if (!whatsappBtn) return;
 
-    const heroHeight = heroSection.offsetHeight;
-    
-    if (window.scrollY > heroHeight - 150) {
+    // Se rolar mais de 100 pixels para baixo a partir do topo, o botão já aparece suavemente
+    if (window.scrollY > 100) {
         whatsappBtn.classList.add('show');
     } else {
         whatsappBtn.classList.remove('show');
