@@ -1,4 +1,127 @@
 /* =========================================
+   RESPONSIVIDADE — TABLET
+   ========================================= */
+
+@media (max-width: 1050px) {
+
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 55px 45px;
+        padding: 75px 0 65px;
+    }
+
+    .footer-brand {
+        max-width: 420px;
+    }
+
+    .footer-legal-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE — MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .footer-section {
+        padding: 0 24px;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 45px 20px;
+        padding: 65px 0 55px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        max-width: 100%;
+    }
+
+    .footer-eyebrow {
+        font-size: 9px;
+        margin-bottom: 18px;
+    }
+
+    .footer-brand h2 {
+        font-size: 30px;
+    }
+
+    .footer-description {
+        max-width: 420px;
+        font-size: 13px;
+        margin-bottom: 24px;
+    }
+
+    .footer-column h3 {
+        font-size: 13px;
+        margin-bottom: 22px;
+    }
+
+    .footer-column ul li {
+        margin-bottom: 14px;
+    }
+
+    .footer-column ul a {
+        font-size: 12.5px;
+    }
+
+    .footer-contact {
+        grid-column: 1 / -1;
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding-top: 32px;
+    }
+
+    .footer-cta {
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .footer-legal-inner {
+        padding: 23px 0;
+    }
+
+    .footer-legal-inner p {
+        font-size: 11px;
+    }
+
+    .footer-registration {
+        white-space: normal;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 0 32px;
+        gap: 12px;
+    }
+
+    .footer-bottom p {
+        font-size: 11px;
+        line-height: 1.7;
+    }
+}
+
+/* TELAS MUITO PEQUENAS */
+
+@media (max-width: 360px) {
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-brand,
+    .footer-contact {
+        grid-column: auto;
+    }
+}
+
+/* =========================================
    RESPONSIVIDADE (TABLETS E MOBILE)
    ========================================= */
 @media (max-width: 1032px) {
@@ -29,7 +152,7 @@
 
     .menu-desktop ul {
         flex-direction: column;
-        align-items: left;
+        align-items: flex-start;
         gap: 0px;
         width: 100%;
     }
@@ -109,10 +232,6 @@
         font-size: 0.92rem;
     }
 
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -208,6 +327,23 @@
         padding: 0 0 75px;
     }
 
+    .whatsapp-float {
+        width: 56px;
+        height: 56px;
+
+        right: 20px !important;
+        bottom: 20px !important;
+
+        font-size: 28px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+    .whatsapp-float,
+    .whatsapp-float::before,
+    .whatsapp-float i {
+        transition: none;
+    }
+}
+
     .container-topo {
         width: calc(100% - 40px);
         margin-bottom: 38px;
@@ -288,14 +424,6 @@
         border-radius: 0;
     }
 
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: left;
-    }
-    
-    .footer-section {
-        padding: 50px 20px;
-    }
 }
 
 @media (max-width: 400px) {    
@@ -303,3 +431,283 @@
         margin-top: 0px;
     }
 }
+
+
+/* =========================================
+   FAQ — TABLET
+   Até 1024px
+   ========================================= */
+
+@media (max-width: 1024px) {
+
+    .faq-section {
+        padding: 90px 0;
+    }
+
+    .faq-container {
+        width: calc(100% - 56px);
+        gap: 35px;
+    }
+
+    .faq-question {
+        font-size: 15px;
+    }
+
+    .faq-contact-card {
+        padding: 25px 28px;
+    }
+}
+
+/* =========================================
+   FAQ — MOBILE
+   Até 768px
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .faq-section {
+        padding: 0px 0 85px;
+    }
+
+    .faq-container {
+        width: calc(100% - 44px);
+        gap: 28px;
+    }
+
+    /* PERGUNTAS */
+
+    .faq-item summary {
+        gap: 12px;
+        padding: 23px 0;
+    }
+
+    .faq-number {
+        width: 22px;
+        font-size: 10px;
+    }
+
+    .faq-question {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* ÍCONE */
+
+    .faq-toggle {
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
+    }
+
+    /* RESPOSTAS */
+
+    .faq-answer {
+        padding: 0 12px 24px 34px;
+    }
+
+    .faq-answer p {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    /* CARD DE CONTATO */
+
+    .faq-contact-card {
+        align-items: flex-start;
+        padding: 22px;
+        gap: 15px;
+    }
+
+    .faq-contact-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 17px;
+    }
+
+    .faq-contact-content h3 {
+        font-size: 16px;
+    }
+
+    .faq-contact-content p {
+        font-size: 12.5px;
+    }
+
+    .faq-contact-content a {
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   MOBILE PEQUENO
+   Até 380px
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .faq-container {
+        width: calc(100% - 36px);
+    }
+
+    .faq-item summary {
+        gap: 10px;
+    }
+
+    .faq-question {
+        font-size: 13px;
+    }
+
+    .faq-contact-card {
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .faq-contact-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================
+   LOCALIZAÇÃO — RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 960px) {
+    .localizacao-galeria {
+        grid-template-columns: 1.3fr 1fr;
+    }
+
+    .localizacao-foto:last-child {
+        display: none;
+    }
+
+    .localizacao-inferior {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .localizacao-info {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .localizacao-section {
+        padding: 75px 0 85px;
+    }
+
+    .localizacao-container {
+        width: calc(100% - 36px);
+    }
+
+    .localizacao-topo {
+        margin-bottom: 35px;
+    }
+
+    .localizacao-galeria {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .localizacao-foto {
+        height: 185px;
+        border-radius: 16px;
+    }
+
+    .localizacao-foto-principal {
+        grid-column: 1 / -1;
+        height: 260px;
+    }
+
+    .localizacao-foto:last-child {
+        display: block;
+    }
+
+    .localizacao-inferior {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .localizacao-info {
+        padding: 32px 26px;
+        border-radius: 20px;
+    }
+
+    .localizacao-info-icon {
+        margin-bottom: 24px;
+    }
+
+    .localizacao-botao {
+        margin-top: 12px;
+    }
+
+    .localizacao-mapa,
+    .localizacao-mapa iframe {
+        min-height: 380px;
+    }
+
+    .localizacao-mapa {
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .localizacao-container {
+        width: calc(100% - 28px);
+    }
+
+    .localizacao-foto-principal {
+        height: 220px;
+    }
+
+    .localizacao-foto:not(.localizacao-foto-principal) {
+        height: 145px;
+    }
+
+    .localizacao-foto-legenda {
+        left: 15px;
+        bottom: 15px;
+        font-size: 12px;
+    }
+
+    .localizacao-info {
+        padding: 28px 22px;
+    }
+
+    .localizacao-mapa,
+    .localizacao-mapa iframe {
+        min-height: 340px;
+    }
+
+    .localizacao-mapa-selo {
+        left: 12px;
+        bottom: 12px;
+        padding: 10px 13px;
+        font-size: 11px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .localizacao-agendamento {
+        margin-top: 40px;
+        gap: 18px;
+    }
+
+    .localizacao-agendamento p {
+        font-size: 16px;
+    }
+
+    .localizacao-btn-agendar {
+        width: 100%;
+        max-width: 340px;
+        padding: 17px 20px;
+        font-size: 14px;
+        gap: 12px;
+    }
+}
+
+
+
+

@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Thalita Farias</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsividade.css">
     <script src="/javascript/script.js" defer></script>
@@ -57,10 +54,10 @@
             <ul>
                 <li><a href="#inicio" onclick="fecharMenu()">Início</a></li>
                 <li><a href="#sobre" onclick="fecharMenu()">Sobre</a></li>
-                <li><a href="#depoimentos" onclick="fecharMenu()">Depoimentos</a></li>
-                <li><a href="#especialidade" onclick="fecharMenu()">Especialidade</a></li>
+                <li><a href="#feedbacks" onclick="fecharMenu()">Depoimentos</a></li>
+                <li><a href="#especialidades" onclick="fecharMenu()">Especialidade</a></li>
                 <li><a href="#duvidas" onclick="fecharMenu()">Dúvidas</a></li>
-                <li><a href="#contato" onclick="fecharMenu()">Contato</a></li>
+                <li><a href="#localizacao" onclick="fecharMenu()">Localização</a></li>
             </ul>
         </nav>
         
@@ -76,6 +73,10 @@
                 </a>
             </div>
             
+        </div>
+        <!-- BARRA DE PROGRESSO DA PÁGINA -->
+        <div class="scroll-progress" aria-hidden="true">
+            <div class="scroll-progress-bar" id="scrollProgressBar"></div>
         </div>    
     </header>
 
@@ -146,7 +147,6 @@
             <!-- COLUNA DA FOTO -->
             <div class="about-image-wrapper">
                 <div class="about-image-frame">
-                    <!-- Você pode usar a foto cinematográfica ou outra foto vertical da Dra. Thalita -->
                     <img src="/fotos/FotoDra.jpeg" alt="Dra. Thalita Farias - Endocrinologista">
                 </div>
                 
@@ -361,7 +361,7 @@
                 </div>
 
                 <div class="faixa-imagem">
-                    <img src="/fotos/especialidades/diabetes.jpg"
+                    <img src="/fotos/especialidades/diabetes.webp"
                          alt="Monitoramento da glicemia"
                          loading="lazy">
                 </div>
@@ -413,7 +413,7 @@
                 </div>
 
                 <div class="faixa-imagem">
-                    <img src="/fotos/especialidades/saude-hormonal.png"
+                    <img src="/fotos/especialidades/saude-hormonal.jpg"
                          alt="Saúde hormonal e acompanhamento médico"
                          loading="lazy">
                 </div>
@@ -425,56 +425,493 @@
 
 
 
-    <!-- =========================================
-   RODAPÉ (ESTILO REFERÊNCIA - 4 COLUNAS)
-   ========================================= -->
-<footer id="footer" class="footer-section">
-    <div class="footer-container">
-        
-        <!-- Coluna 1: Logo / Identidade & Contatos diretos -->
-        <div class="footer-col footer-col-brand">
-            <h4>Dra. Thalita Farias</h4>
-            <p>Endocrinologista</p>
-            
-            <div class="footer-info-list">
-                <span>CRM/BA: 123456</span>
-                <span>RQE: 65432</span>
-                <a href="https://instagram.com" target="_blank">Siga meu Instagram</a>
-                <a href="https://whatsapp.com" target="_blank">WhatsApp - (75) 99999-9999</a>
-                <span>Telefone: (75) 3333-4444</span>
+
+<!-- =========================================
+     SEÇÃO DÚVIDAS FREQUENTES
+     ========================================= -->
+
+    <section id="duvidas" class="faq-section">
+
+        <!-- CABEÇALHO PADRONIZADO -->
+        <div class="container-topo">
+            <span class="tag-clinica">Informação e Acolhimento</span>
+
+            <h2>Dúvidas Frequentes</h2>
+
+            <p>
+                Esclareça suas principais dúvidas sobre o atendimento
+                endocrinológico e descubra como podemos ajudar você
+                a cuidar melhor da sua saúde.
+            </p>
+        </div>
+
+        <div class="faq-container">
+
+            <!-- LISTA DE PERGUNTAS -->
+            <div class="faq-list scroll-reveal">
+
+                <details class="faq-item" name="faq">
+                    <summary>
+                        <span class="faq-number">01</span>
+                        <span class="faq-question">
+                            Quando devo procurar um endocrinologista?
+                        </span>
+                        <span class="faq-toggle">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>
+                            O endocrinologista atua na investigação e
+                            no acompanhamento de alterações hormonais
+                            e metabólicas, como diabetes, doenças da
+                            tireoide, obesidade e outras condições.
+                            A avaliação é indicada quando existem
+                            sintomas, alterações em exames ou
+                            necessidade de acompanhamento especializado.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq">
+                    <summary>
+                        <span class="faq-number">02</span>
+                        <span class="faq-question">
+                            Como funciona a primeira consulta?
+                        </span>
+                        <span class="faq-toggle">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>
+                            A primeira consulta envolve uma conversa
+                            detalhada sobre seu histórico de saúde,
+                            sintomas, hábitos e objetivos. A médica
+                            realiza a avaliação clínica e, quando
+                            necessário, solicita exames para orientar
+                            a investigação e o plano de cuidados.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq">
+                    <summary>
+                        <span class="faq-number">03</span>
+                        <span class="faq-question">
+                            Preciso levar exames para a consulta?
+                        </span>
+                        <span class="faq-toggle">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>
+                            Não é obrigatório realizar exames por
+                            conta própria antes da consulta.
+                            Caso possua exames recentes, receitas
+                            ou relatórios médicos, é interessante
+                            levá-los para auxiliar na avaliação.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq">
+                    <summary>
+                        <span class="faq-number">04</span>
+                        <span class="faq-question">
+                            O tratamento para emagrecimento é individualizado?
+                        </span>
+                        <span class="faq-toggle">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>
+                            Sim. A abordagem considera o histórico
+                            clínico, os hábitos, as condições
+                            metabólicas e as necessidades de cada
+                            paciente. O objetivo é construir
+                            estratégias seguras e sustentáveis,
+                            sem promessas de resultados rápidos
+                            ou padronizados.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq">
+                    <summary>
+                        <span class="faq-number">05</span>
+                        <span class="faq-question">
+                            Alterações hormonais podem afetar minha disposição?
+                        </span>
+                        <span class="faq-toggle">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>
+                            Algumas alterações hormonais podem
+                            contribuir para sintomas como cansaço
+                            e mudanças na disposição. Entretanto,
+                            esses sintomas também possuem outras
+                            possíveis causas. Uma avaliação médica
+                            ajuda a identificar o que precisa ser
+                            investigado.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq">
+                    <summary>
+                        <span class="faq-number">06</span>
+                        <span class="faq-question">
+                            Como posso agendar uma consulta?
+                        </span>
+                        <span class="faq-toggle">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+
+                    <div class="faq-answer">
+                        <p>
+                            Para solicitar um agendamento, entre
+                            em contato com nossa equipe pelo
+                            WhatsApp. Você poderá consultar
+                            informações sobre horários disponíveis
+                            e orientações para o atendimento.
+                        </p>
+                    </div>
+                </details>
+
             </div>
+
+            <!-- CARD DE CONTATO -->
+            <div class="faq-contact-card scroll-reveal">
+
+                <div class="faq-contact-icon">
+                    <i class="fa-regular fa-comments"></i>
+                </div>
+
+                <div class="faq-contact-content">
+                    <h3>Ainda tem alguma dúvida?</h3>
+
+                    <p>
+                        Nossa equipe está à disposição para orientar você.
+                    </p>
+
+                    <a href="https://wa.me/5571999999999"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        Falar com a equipe
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+            </div>
+
         </div>
 
-        <!-- Coluna 2: Menu de Navegação -->
-        <div class="footer-col">
-            <h5>Menu</h5>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#feedbacks">Depoimentos</a></li>
-                <li><a href="#especialidade">Especialidade</a></li>
-                <li><a href="#duvidas">Dúvidas</a></li>
-            </ul>
+    </section>
+
+
+
+    <!-- =========================================
+     LOCALIZAÇÃO — ISARE
+     ========================================= -->
+
+    <section id="localizacao" class="localizacao-section">
+
+        <div class="localizacao-container">
+
+            <!-- CABEÇALHO -->
+            <div class="container-topo localizacao-topo scroll-reveal">
+                <span class="tag-clinica">ONDE ESTAMOS</span>
+
+                <h2>Um espaço pensado para
+                    <span>acolher você.</span>
+                </h2>
+
+                <p>
+                    Um ambiente dedicado ao cuidado, à tranquilidade
+                    e ao seu bem-estar. Conheça o local de atendimento
+                    da Dra. Thalita Farias.
+                </p>
+            </div>
+
+            <!-- GALERIA -->
+            <div class="localizacao-galeria">
+
+                <div class="localizacao-foto localizacao-foto-principal scroll-reveal">
+                    <img
+                        src="/fotos/recepcao.jpg"
+                        alt="Recepção do ISARE"
+                        loading="lazy"
+                    >
+
+                    <div class="localizacao-foto-legenda scroll-reveal">
+                        <i class="fa-solid fa-building"></i>
+                        <span>ISARE — Espaço de atendimento</span>
+                    </div>
+                </div>
+
+                <div class="localizacao-foto scroll-reveal">
+                    <img
+                        src="/fotos/recepcao.jpg"
+                        alt="Ambiente de atendimento"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="localizacao-foto scroll-reveal">
+                    <img
+                        src="/fotos/recepcao.jpg"
+                        alt="Ambiente interno do ISARE"
+                        loading="lazy"
+                    >
+                </div>
+
+            </div>
+
+            <!-- INFORMAÇÕES E MAPA -->
+            <div class="localizacao-inferior">
+
+                <div class="localizacao-info">
+
+                    <div class="localizacao-info-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <span class="localizacao-eyebrow">
+                        LOCAL DE ATENDIMENTO
+                    </span>
+
+                    <h3>ISARE</h3>
+
+                    <p class="localizacao-cidade">
+                        Santo Antônio de Jesus — Bahia
+                    </p>
+
+                    <div class="localizacao-linha"></div>
+
+                    <div class="localizacao-detalhe">
+                        <i class="fa-solid fa-stethoscope"></i>
+
+                        <div>
+                            <strong>Atendimento especializado</strong>
+                            <span>Endocrinologia e Metabologia</span>
+                        </div>
+                    </div>
+
+                    <div class="localizacao-detalhe">
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        <div>
+                            <strong>Encontre-nos facilmente</strong>
+                            <span>Consulte a localização no mapa ao lado.</span>
+                        </div>
+                    </div>
+
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=ISARE%2C%20Santo%20Ant%C3%B4nio%20de%20Jesus%2C%20BA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="localizacao-botao"
+                    >
+                        <span>Como chegar</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                </div>
+
+                <div class="localizacao-mapa">
+
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.094871646418!2d-39.270236124034774!3d-12.965780759693795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x73e2bd944ef8fdf%3A0x7284f5b92e84eb58!2sISARE!5e0!3m2!1spt-BR!2sbr!4v1794510126510!5m2!1spt-BR!2sbr"
+                        title="Localização do ISARE no Google Maps"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+
+                    <div class="localizacao-mapa-selo">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>Encontre nosso espaço</span>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="localizacao-agendamento scroll-reveal">
+
+    <p>Estamos prontos para receber você.</p>
+
+    <a
+        href="https://wa.me/5575999999999?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Thalita."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="localizacao-btn-agendar"
+    >
+        <i class="fa-regular fa-calendar-check"></i>
+        <span>Agendar minha consulta</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+
+            </div>
+
         </div>
 
-        <!-- Coluna 3: Copyright e Avisos Legais -->
-        <div class="footer-col">
-            <h5>Copyright</h5>
-            <p class="footer-legal-text">Este website tem caráter informativo e educacional.</p>
-            <p class="footer-legal-text">O paciente jamais deve usar seu conteúdo para autodiagnóstico ou autotratamento.</p>
+    </section>
+
+
+
+    <!-- =========================================
+   FOOTER
+   ========================================= -->
+    <footer id="footer" class="footer-section">
+
+        <div class="footer-container">
+
+            <!-- IDENTIDADE PROFISSIONAL -->
+            <div class="footer-brand">
+
+                <span class="footer-eyebrow">MEDICINA & BEM-ESTAR</span>
+
+                <h2>Dra. Thalita Farias<span>.</span></h2>
+
+                <p class="footer-specialty">
+                    Endocrinologia e Metabologia
+                </p>
+
+                <p class="footer-description">
+                    Um cuidado individualizado, fundamentado na ciência
+                    e dedicado à promoção da saúde, do equilíbrio
+                    e da qualidade de vida.
+                </p>
+
+                <div class="footer-social">
+                    <a href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="https://wa.me/557391777622"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- NAVEGAÇÃO -->
+            <nav class="footer-column" aria-label="Navegação do rodapé">
+
+                <h3>Navegação</h3>
+
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre a médica</a></li>
+                    <li><a href="#especialidades">Áreas de atuação</a></li>
+                    <li><a href="#feedbacks">Depoimentos</a></li>
+                    <li><a href="#localizacao">Localização</a></li>
+                </ul>
+
+            </nav>
+
+            <!-- ÁREAS DE ATUAÇÃO -->
+            <div class="footer-column">
+
+                <h3>Áreas de atuação</h3>
+
+                <ul>
+                    <li><a href="#especialidades">Emagrecimento</a></li>
+                    <li><a href="#especialidades">Tireoide</a></li>
+                    <li><a href="#especialidades">Diabetes</a></li>
+                    <li><a href="#especialidades">Saúde hormonal</a></li>
+                    <li><a href="#especialidades">Saúde metabólica</a></li>
+                </ul>
+
+            </div>
+
+            <!-- CONTATO -->
+            <div class="footer-column footer-contact">
+
+                <h3>Entre em contato</h3>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>
+                        Santo Antônio de Jesus — BA<br>
+                        <small>Endereço completo em breve</small>
+                    </span>
+                </p>
+
+                <p>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <a href="https://wa.me/557391777622"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        Fale com nossa equipe
+                    </a>
+                </p>
+
+                <a class="footer-cta"
+                href="https://wa.me/557391777622?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
+                target="_blank"
+                rel="noopener noreferrer">
+                    Agendar consulta
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
         </div>
 
-        <!-- Coluna 4: Localização e Créditos -->
-        <div class="footer-col">
-            <h5>Como chegar</h5>
-            <p class="footer-address">Av. Exemplo, 1000 – Sala 402 – Centro, Santo Antônio de Jesus – BA, CEP: 45400-000</p>
-            
-            <h5 class="footer-dev-title">Desenvolvido por</h5>
-            <p class="footer-dev-name">Lucas Ferreira</p>
+        <!-- INFORMAÇÕES LEGAIS -->
+        <div class="footer-legal">
+
+            <div class="footer-legal-inner">
+
+                <p>
+                    Este site possui caráter informativo e não substitui
+                    uma avaliação médica individualizada.
+                </p>
+
+                <p class="footer-registration">
+                    CRM/BA: 123456 <span>|</span> RQE: 65432
+                </p>
+
+            </div>
+
         </div>
 
-    </div>
-</footer>
+        <!-- RODAPÉ INFERIOR -->
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Dra. Thalita Farias.
+                Todos os direitos reservados.
+            </p>
+
+            <p>
+                Desenvolvido por <span>Lucas Ferreira</span>
+            </p>
+
+        </div>
+
+    </footer>
+
     
 
 
@@ -488,5 +925,3 @@
     
 </body>
 </html>
-
-

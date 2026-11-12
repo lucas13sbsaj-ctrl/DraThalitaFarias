@@ -1,278 +1,502 @@
-// Função para abrir e fechar o menu mobile
-function toggleMenu() {
-    const nav = document.getElementById('menuMobile');
-    const btn = document.getElementById('btnMenu');
-    const icon = btn.querySelector('i');
-    
-    nav.classList.toggle('active');
-    btn.classList.toggle('ativo');
-    
-    if (nav.classList.contains('active')) {
-        setTimeout(() => {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        }, 150);
-    } else {
-        setTimeout(() => {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }, 150);
-    }
-}
 
-// Função para fechar o menu automaticamente ao clicar em links
-function fecharMenu() {
-    const nav = document.getElementById('menuMobile');
-    const btn = document.getElementById('btnMenu');
-    const icon = btn.querySelector('i');
-    
-    nav.classList.remove('active');
-    btn.classList.remove('ativo');
-    
-    setTimeout(() => {
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-    }, 150);
-}
-
-// Mostrar ou ocultar o botão do WhatsApp baseado na rolagem da página
-window.addEventListener('scroll', function() {
-    const whatsappBtn = document.querySelector('.whatsapp-float');
-    
-    if (!whatsappBtn) return;
-
-    // Se rolar mais de 100 pixels para baixo a partir do topo, o botão já aparece suavemente
-    if (window.scrollY > 100) {
-        whatsappBtn.classList.add('show');
-    } else {
-        whatsappBtn.classList.remove('show');
-    }
-});
-
-
-//APARECER TELA SOBRE A DRA
-    document.addEventListener("DOMContentLoaded", function() {
-        const imageWrapper = document.querySelector('.about-image-wrapper');
-        const aboutContent = document.querySelector('.about-content');
-
-        // Configuração geral do observador
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px', // Dá uma folga para disparar um pouco antes de sumir da tela
-            threshold: 0.2 // Requer 20% do elemento visível para disparar
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Adiciona a classe reveal no elemento específico que entrou na tela
-                    entry.target.classList.add('reveal');
-                    // Para de observar este elemento após animar
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Cada elemento é monitorado de forma totalmente independente
-        if (imageWrapper) {
-            revealObserver.observe(imageWrapper);
-        }
-        
-        if (aboutContent) {
-            revealObserver.observe(aboutContent);
-        }
-    });
-
-//APARECER TELA FEEDBACKS
-    document.addEventListener("DOMContentLoaded", function() {
-        const imageWrapper = document.querySelector('.about-image-wrapper');
-        const aboutContent = document.querySelector('.about-content');
-        const feedbacksSection = document.querySelector('#feedbacks'); // Nova seção de feedbacks
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.15
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Monitora todos os elementos de forma independente
-        if (imageWrapper) revealObserver.observe(imageWrapper);
-        if (aboutContent) revealObserver.observe(aboutContent);
-        if (feedbacksSection) revealObserver.observe(feedbacksSection); // Ativa os cards em cascata ao chegar neles
-    });
-
-    //LOGICA FEEDBACKS
-    document.addEventListener("DOMContentLoaded", function() {
-        const imageWrapper = document.querySelector('.about-image-wrapper');
-        const aboutContent = document.querySelector('.about-content');
-        const feedbacksSection = document.querySelector('#feedbacks');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.15
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        if (imageWrapper) revealObserver.observe(imageWrapper);
-        if (aboutContent) revealObserver.observe(aboutContent);
-        if (feedbacksSection) revealObserver.observe(feedbacksSection);
-
-        // ==========================================
-        // CARROSSEL DE FEEDBACKS (ROBUSTO E DINÂMICO)
-        // ==========================================
-        const grid = document.getElementById('feedbacksGrid');
-        const dotsContainer = document.getElementById('carouselDots');
-        const cards = document.querySelectorAll('.feedback-card');
-        
-        if (grid && dotsContainer && cards.length > 0) {
-            let currentIndex = 0;
-            let autoplayInterval;
-
-            // Gera os pontinhos dinamicamente baseados na quantidade real de cards
-            dotsContainer.innerHTML = '';
-            cards.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.type = 'button';
-                dot.classList.add('dot');
-                if (index === 0) dot.classList.add('active');
-                
-                dot.addEventListener('click', () => {
-                    currentIndex = index;
-                    scrollToIndex(currentIndex);
-                    updateActiveDot(currentIndex);
-                    resetAutoplay();
-                });
-                
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = dotsContainer.querySelectorAll('.dot');
-
-            function scrollToIndex(index) {
-                const targetCard = cards[index];
-                if (targetCard) {
-                    // Deslocamento exato baseado na posição do card dentro do container
-                    const scrollLeftPos = targetCard.offsetLeft - grid.offsetLeft;
-                    grid.scrollTo({
-                        left: scrollLeftPos,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-
-            function updateActiveDot(index) {
-                dots.forEach(d => d.classList.remove('active'));
-                if (dots[index]) {
-                    dots[index].classList.add('active');
-                }
-            }
-
-            // Sincroniza o pontinho ao rolar manualmente (arrastando com o dedo ou mouse)
-            let scrollTimeout;
-            grid.addEventListener('scroll', () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    const scrollPos = grid.scrollLeft;
-                    let closestIndex = 0;
-                    let minDistance = Infinity;
-
-                    cards.forEach((card, index) => {
-                        const cardLeft = card.offsetLeft - grid.offsetLeft;
-                        const distance = Math.abs(scrollPos - cardLeft);
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            closestIndex = index;
-                        }
-                    });
-
-                    if (currentIndex !== closestIndex) {
-                        currentIndex = closestIndex;
-                        updateActiveDot(currentIndex);
-                    }
-                }, 60);
-            });
-
-            // Autoplay (Passa sozinho a cada 4 segundos e dá a volta no último)
-            function startAutoplay() {
-                autoplayInterval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % cards.length;
-                    scrollToIndex(currentIndex);
-                    updateActiveDot(currentIndex);
-                }, 4000);
-            }
-
-            function resetAutoplay() {
-                clearInterval(autoplayInterval);
-                startAutoplay();
-            }
-
-            grid.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-            grid.addEventListener('mouseleave', () => startAutoplay());
-
-            startAutoplay();
-        }
-    });
-
-    window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    
-    // Se rolar mais de 50 pixels para baixo, adiciona a cor de fundo
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        // Se voltar para o topo (Hero), fica transparente novamente
-        header.classList.remove('scrolled');
-    }
-});
+/* =========================================
+   SCRIPT PRINCIPAL — DRA. THALITA FARIAS
+   Menu, animações, header e depoimentos
+   ========================================= */
 
 document.documentElement.classList.add("js");
 
-document.addEventListener("DOMContentLoaded", () => {
-    const faixas = document.querySelectorAll(".faixa-bloco");
+/* =========================================
+   1. MENU MOBILE
+   Abertura, fechamento e rotação do ícone
+   ========================================= */
 
-    if (!faixas.length) return;
+const menuMobile = document.getElementById("menuMobile");
+const btnMenu = document.getElementById("btnMenu");
+const iconeMenu = btnMenu?.querySelector("i");
+
+let temporizadorIcone = null;
+
+function atualizarIconeMenu(aberto) {
+    if (!iconeMenu) return;
+
+    clearTimeout(temporizadorIcone);
+
+    // A troca acontece durante a rotação.
+    temporizadorIcone = setTimeout(() => {
+        iconeMenu.classList.toggle("fa-bars", !aberto);
+        iconeMenu.classList.toggle("fa-xmark", aberto);
+    }, 150);
+}
+
+function definirEstadoMenu(aberto) {
+    if (!menuMobile || !btnMenu) return;
+
+    menuMobile.classList.toggle("active", aberto);
+    btnMenu.classList.toggle("ativo", aberto);
+
+    btnMenu.setAttribute("aria-expanded", String(aberto));
+    btnMenu.setAttribute(
+        "aria-label",
+        aberto ? "Fechar menu" : "Abrir menu"
+    );
+
+    atualizarIconeMenu(aberto);
+}
+
+function toggleMenu() {
+    if (!menuMobile) return;
+
+    const aberto = menuMobile.classList.contains("active");
+
+    definirEstadoMenu(!aberto);
+}
+
+function fecharMenu() {
+    definirEstadoMenu(false);
+}
+
+// Necessário para os onclick existentes no HTML.
+window.toggleMenu = toggleMenu;
+window.fecharMenu = fecharMenu;
+
+if (btnMenu && menuMobile) {
+    btnMenu.setAttribute("role", "button");
+    btnMenu.setAttribute("tabindex", "0");
+    btnMenu.setAttribute("aria-controls", "menuMobile");
+    btnMenu.setAttribute("aria-expanded", "false");
+    btnMenu.setAttribute("aria-label", "Abrir menu");
+
+    // Permite abrir também pelo teclado.
+    btnMenu.addEventListener("keydown", (evento) => {
+        if (evento.key === "Enter" || evento.key === " ") {
+            evento.preventDefault();
+            toggleMenu();
+        }
+    });
+
+    // Fecha ao clicar fora do menu.
+    document.addEventListener("click", (evento) => {
+        if (!menuMobile.classList.contains("active")) return;
+
+        if (
+            !menuMobile.contains(evento.target) &&
+            !btnMenu.contains(evento.target)
+        ) {
+            fecharMenu();
+        }
+    });
+
+    // Fecha ao pressionar ESC.
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape") {
+            fecharMenu();
+        }
+    });
+
+    // Fecha ao voltar para o layout desktop.
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 1032) {
+            fecharMenu();
+        }
+    });
+}
+
+/* =========================================
+   2. HEADER E WHATSAPP FLUTUANTE
+   ========================================= */
+
+const header = document.querySelector("header");
+const whatsappFloat = document.querySelector(".whatsapp-float");
+
+let scrollAgendado = false;
+
+function atualizarElementosScroll() {
+    const posicao = window.scrollY;
+
+    if (header) {
+        header.classList.toggle("scrolled", posicao > 50);
+    }
+
+    if (whatsappFloat) {
+        whatsappFloat.classList.toggle("show", posicao > 100);
+    }
+
+    scrollAgendado = false;
+}
+
+window.addEventListener("scroll", () => {
+    if (!scrollAgendado) {
+        scrollAgendado = true;
+        requestAnimationFrame(atualizarElementosScroll);
+    }
+}, { passive: true });
+
+atualizarElementosScroll();
+
+/* =========================================
+   3. ANIMAÇÕES DE ENTRADA
+   SOBRE, DEPOIMENTOS E ELEMENTOS GERAIS
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
 
     const movimentoReduzido = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (movimentoReduzido || !("IntersectionObserver" in window)) {
-        faixas.forEach(faixa => faixa.classList.add("ativo"));
-        return;
+    const suportaObserver =
+        "IntersectionObserver" in window;
+
+    const elementosAnimados = document.querySelectorAll(
+        ".about-image-wrapper, .about-content, #feedbacks, #duvidas, .scroll-reveal"
+    );
+
+    if (movimentoReduzido || !suportaObserver) {
+
+        elementosAnimados.forEach(elemento => {
+            elemento.classList.add("reveal");
+        });
+
+    } else {
+
+        const observerReveal = new IntersectionObserver(
+            (entradas, observer) => {
+
+                entradas.forEach(entrada => {
+
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add("reveal");
+
+                        observer.unobserve(entrada.target);
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            }
+        );
+
+        elementosAnimados.forEach(elemento => {
+            observerReveal.observe(elemento);
+        });
     }
 
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("ativo");
-                obs.unobserve(entry.target);
+    /* =========================================
+       4. ANIMAÇÕES DAS ESPECIALIDADES
+       Cabeçalho + cinco faixas
+       ========================================= */
+
+    const secaoEspecialidades =
+        document.querySelector(".secao-faixas");
+
+    const faixas =
+        document.querySelectorAll(".faixa-bloco");
+
+    if (movimentoReduzido || !suportaObserver) {
+
+        if (secaoEspecialidades) {
+            secaoEspecialidades.classList.add("ativo");
+        }
+
+        faixas.forEach(faixa => {
+            faixa.classList.add("ativo");
+        });
+
+    } else {
+
+        // Anima o cabeçalho da seção.
+        if (secaoEspecialidades) {
+
+            const observerCabecalho =
+                new IntersectionObserver(
+                    (entradas, observer) => {
+
+                        entradas.forEach(entrada => {
+
+                            if (entrada.isIntersecting) {
+                                entrada.target.classList.add("ativo");
+
+                                observer.unobserve(entrada.target);
+                            }
+
+                        });
+
+                    },
+                    {
+                        threshold: 0.12,
+                        rootMargin: "0px 0px -50px 0px"
+                    }
+                );
+
+            observerCabecalho.observe(secaoEspecialidades);
+        }
+
+        // Anima cada faixa individualmente.
+        const observerFaixas =
+            new IntersectionObserver(
+                (entradas, observer) => {
+
+                    entradas.forEach(entrada => {
+
+                        if (entrada.isIntersecting) {
+                            entrada.target.classList.add("ativo");
+
+                            observer.unobserve(entrada.target);
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -60px 0px"
+                }
+            );
+
+        faixas.forEach(faixa => {
+            observerFaixas.observe(faixa);
+        });
+    }
+
+    /* =========================================
+       5. CARROSSEL DE DEPOIMENTOS
+       Navegação, indicadores e autoplay
+       ========================================= */
+
+    const feedbacksGrid =
+        document.getElementById("feedbacksGrid");
+
+    const carouselDots =
+        document.getElementById("carouselDots");
+
+    if (feedbacksGrid && carouselDots) {
+
+        const cards = Array.from(
+            feedbacksGrid.querySelectorAll(".feedback-card")
+        );
+
+        if (cards.length === 0) return;
+
+        let indiceAtual = 0;
+        let intervaloAutoplay = null;
+        let pausado = false;
+
+        const intervaloTempo = 4000;
+
+        function obterPosicaoCard(indice) {
+            const card = cards[indice];
+
+            return card.offsetLeft - cards[0].offsetLeft;
+        }
+
+        function atualizarIndicadores() {
+            const dots = carouselDots.querySelectorAll(
+                ".carousel-dot, .dot"
+            );
+
+            dots.forEach((dot, indice) => {
+                const ativo = indice === indiceAtual;
+
+                dot.classList.toggle("active", ativo);
+                dot.setAttribute("aria-current", String(ativo));
+            });
+        }
+
+        function navegarPara(indice) {
+            indiceAtual =
+                (indice + cards.length) % cards.length;
+
+            feedbacksGrid.scrollTo({
+                left: obterPosicaoCard(indiceAtual),
+                behavior: movimentoReduzido ? "auto" : "smooth"
+            });
+
+            atualizarIndicadores();
+        }
+
+        function criarIndicadores() {
+            carouselDots.innerHTML = "";
+
+            cards.forEach((card, indice) => {
+                const dot = document.createElement("button");
+
+                dot.type = "button";
+                dot.className = "dot carousel-dot";
+
+                dot.setAttribute(
+                    "aria-label",
+                    `Ir para o depoimento ${indice + 1}`
+                );
+
+                dot.addEventListener("click", () => {
+                    navegarPara(indice);
+                    reiniciarAutoplay();
+                });
+
+                carouselDots.appendChild(dot);
+            });
+
+            atualizarIndicadores();
+        }
+
+        function proximoDepoimento() {
+            navegarPara(indiceAtual + 1);
+        }
+
+        function pararAutoplay() {
+            if (intervaloAutoplay !== null) {
+                clearInterval(intervaloAutoplay);
+                intervaloAutoplay = null;
+            }
+        }
+
+        function iniciarAutoplay() {
+            pararAutoplay();
+
+            if (
+                cards.length <= 1 ||
+                movimentoReduzido ||
+                pausado ||
+                document.hidden
+            ) {
+                return;
+            }
+
+            intervaloAutoplay = setInterval(() => {
+                proximoDepoimento();
+            }, intervaloTempo);
+        }
+
+        function reiniciarAutoplay() {
+            iniciarAutoplay();
+        }
+
+        feedbacksGrid.addEventListener("mouseenter", () => {
+            pausado = true;
+            pararAutoplay();
+        });
+
+        feedbacksGrid.addEventListener("mouseleave", () => {
+            pausado = false;
+            iniciarAutoplay();
+        });
+
+        feedbacksGrid.addEventListener("touchstart", () => {
+            pausado = true;
+            pararAutoplay();
+        }, { passive: true });
+
+        feedbacksGrid.addEventListener("touchend", () => {
+            pausado = false;
+            iniciarAutoplay();
+        }, { passive: true });
+
+        feedbacksGrid.addEventListener("focusin", () => {
+            pausado = true;
+            pararAutoplay();
+        });
+
+        feedbacksGrid.addEventListener("focusout", (evento) => {
+            if (!feedbacksGrid.contains(evento.relatedTarget)) {
+                pausado = false;
+                iniciarAutoplay();
             }
         });
-    }, {
-        root: null,
-        rootMargin: "0px 0px -60px 0px",
-        threshold: 0.12
-    });
 
-    faixas.forEach(faixa => {
-        observer.observe(faixa);
-    });
+        // Atualiza o indicador ao arrastar manualmente.
+        let scrollTimer;
+
+        feedbacksGrid.addEventListener("scroll", () => {
+            clearTimeout(scrollTimer);
+
+            scrollTimer = setTimeout(() => {
+                const posicaoAtual = feedbacksGrid.scrollLeft;
+
+                let menorDistancia = Infinity;
+                let novoIndice = indiceAtual;
+
+                cards.forEach((card, indice) => {
+                    const distancia = Math.abs(
+                        obterPosicaoCard(indice) - posicaoAtual
+                    );
+
+                    if (distancia < menorDistancia) {
+                        menorDistancia = distancia;
+                        novoIndice = indice;
+                    }
+                });
+
+                indiceAtual = novoIndice;
+                atualizarIndicadores();
+
+            }, 100);
+
+        }, { passive: true });
+
+        window.addEventListener("resize", () => {
+            feedbacksGrid.scrollTo({
+                left: obterPosicaoCard(indiceAtual),
+                behavior: "auto"
+            });
+        });
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                pararAutoplay();
+            } else {
+                iniciarAutoplay();
+            }
+        });
+
+        criarIndicadores();
+        iniciarAutoplay();
+    }
+
 });
+
+
+
+/* =========================================
+   PROGRESSO DE ROLAGEM DA PÁGINA
+   ========================================= */
+
+const scrollProgressBar = document.getElementById(
+    "scrollProgressBar"
+);
+
+function atualizarProgressoRolagem() {
+    if (!scrollProgressBar) return;
+
+    const alturaRolavel =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    const progresso = alturaRolavel > 0
+        ? (window.scrollY / alturaRolavel) * 100
+        : 0;
+
+    const porcentagem = Math.min(
+        100,
+        Math.max(0, progresso)
+    );
+
+    scrollProgressBar.style.width = `${porcentagem}%`;
+}
+
+window.addEventListener(
+    "scroll",
+    atualizarProgressoRolagem,
+    { passive: true }
+);
+
+window.addEventListener(
+    "resize",
+    atualizarProgressoRolagem
+);
+
+atualizarProgressoRolagem();
+
