@@ -500,3 +500,57 @@ window.addEventListener(
 
 atualizarProgressoRolagem();
 
+// ==========================================
+// SETAS DO CARROSSEL DE DEPOIMENTOS
+// ==========================================
+
+const feedbackGrid = document.querySelector(".feedbacks-grid");
+
+const btnAnterior = document.getElementById("feedbackAnterior");
+const btnProximo = document.getElementById("feedbackProximo");
+
+if (feedbackGrid && btnAnterior && btnProximo) {
+
+    function moverFeedback(direcao) {
+
+        const primeiroCard = feedbackGrid.firstElementChild;
+
+        if (!primeiroCard) return;
+
+        const larguraCard = primeiroCard.getBoundingClientRect().width;
+
+        const estilos = window.getComputedStyle(feedbackGrid);
+        const espaco = parseFloat(estilos.columnGap) || 0;
+
+        feedbackGrid.scrollBy({
+            left: direcao * (larguraCard + espaco),
+            behavior: "smooth"
+        });
+    }
+
+    btnAnterior.addEventListener("click", () => {
+        moverFeedback(-1);
+    });
+
+    btnProximo.addEventListener("click", () => {
+        moverFeedback(1);
+    });
+
+    function atualizarSetas() {
+        const maxScroll =
+            feedbackGrid.scrollWidth - feedbackGrid.clientWidth;
+
+        btnAnterior.disabled = feedbackGrid.scrollLeft <= 2;
+
+        btnProximo.disabled =
+            feedbackGrid.scrollLeft >= maxScroll - 2;
+    }
+
+    feedbackGrid.addEventListener("scroll", atualizarSetas, {
+        passive: true
+    });
+
+    window.addEventListener("resize", atualizarSetas);
+
+    atualizarSetas();
+}

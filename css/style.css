@@ -21,6 +21,39 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px
+
+}
+
+/* ==========================================
+   SCROLLBAR PRINCIPAL DO SITE
+   ========================================== */
+
+/* Largura da barra */
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fundo da barra (trilho) */
+html::-webkit-scrollbar-track {
+    background: #F9F6F0;
+}
+
+/* Parte que se movimenta */
+html::-webkit-scrollbar-thumb {
+    background: #a4a87e;
+    border-radius: 20px;
+    border: 2px solid #F9F6F0;
+}
+
+/* Quando o mouse passa sobre a barra */
+html::-webkit-scrollbar-thumb:hover {
+    background: #185b46;
+}
+
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #a4a87e #F9F6F0;
 }
 
 body {
@@ -202,19 +235,20 @@ header.scrolled {
 }
 
 .hero-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     width: fit-content;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    background-color: rgba(107, 79, 70, 0.1);
+
     color: #7c5e54;
-    padding: 6px 25px;
-    border-radius: 50px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
 }
+
 
 .hero-title {
     font-size: 60px;
@@ -231,11 +265,26 @@ header.scrolled {
 
 .hero-description {
     font-size: 16px;
-    color: #58473a;
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 600px;
-    text-shadow: 0 0 10px #ffffff8a;
+
+    /* Degradê aplicado diretamente nas letras */
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 600px;
+
+    background: linear-gradient(
+        90deg,
+        #867b72 0%,
+        #99847b 55%,
+        #46352e 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-actions {
@@ -578,6 +627,72 @@ header.scrolled {
     position: relative;
 }
 
+/* NAVEGAÇÃO DOS DEPOIMENTOS */
+
+.feedbacks-navegacao {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.feedbacks-seta {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(24, 91, 70, 0.22);
+    border-radius: 50%;
+
+    background: transparent;
+    color: #185b46;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.feedbacks-seta:hover {
+    background: #185b46;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.feedbacks-seta:active {
+    transform: scale(0.95);
+}
+
+.feedbacks-seta:focus-visible {
+    outline: 3px solid #a4a87e;
+    outline-offset: 3px;
+}
+
+.feedbacks-seta:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 600px) {
+    .feedbacks-navegacao {
+        justify-content: center;
+        margin-top: 24px;
+    }
+
+    .feedbacks-seta {
+        width: 44px;
+        height: 44px;
+    }
+}
+
 .feedbacks-grid {
     display: flex !important;
     flex-direction: row !important;
@@ -736,7 +851,6 @@ header.scrolled {
 }
 
 .container-topo p {
-    max-width: 550px;
     color: var(--cor-descricao);
     font-size: 1.05rem;
     line-height: 1.7;
