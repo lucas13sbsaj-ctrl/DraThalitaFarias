@@ -8,6 +8,16 @@
     font-family: "Outfit", sans-serif;
 }
 
+:root{
+    --cor-fundo: #f8f7f3;
+    --cor-sage: #e9eadf;
+    --cor-sage-2: #e3e5d7;
+    --cor-verde: #185b46;
+    --cor-verde-claro: rgb(164, 168, 126);;
+    --cor-texto: #58473a;
+    --cor-descricao: #505954;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -28,18 +38,13 @@ header {
     z-index: 1000;
     display: flex;
     align-items: center;
-    
-    /* Começa com um blur bem leve e um degradê quase invisível de baixo para cima */
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
     background: linear-gradient(to top, rgba(253, 252, 252, 0), rgba(163, 163, 139, 0.11));
-    
-    /* Transição suave de 0.5 segundos para tudo */
     transition: all 0.5s ease;
 }
 
 header.scrolled {
-    /* Ao rolar, assume a cor que você escolheu e aumenta o blur */
     background: rgba(237, 238, 226, 0.616); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -159,7 +164,7 @@ header.scrolled {
 }
 
 /* =========================================
-   SEÇÃO HERO (RESOLVE O PROBLEMA DE TELAS 4K)
+   SEÇÃO HERO
    ========================================= */
 .hero-section {
     width: 100%;
@@ -183,7 +188,9 @@ header.scrolled {
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empurra o conteúdo e segura o carrossel na base */
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-content {
@@ -227,7 +234,7 @@ header.scrolled {
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 600px;
-    text-shadow: 0 00px 10px #ffffff71;
+    text-shadow: 0 00px 10px #ffffff8a;
 }
 
 .hero-actions {
@@ -277,6 +284,24 @@ header.scrolled {
     transition: transform 0.3s ease;
 }
 
+/* Transição suave entre Hero e Seção Sobre */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.562) 60%,
+        #F9F6F0 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+}
+
 /* =========================================
    BARRA DE DIFERENCIAIS / CARROSSEL INFINITO
    ========================================= */
@@ -284,7 +309,7 @@ header.scrolled {
     width: 100%;
     max-width: 1380px;
     height: 52px;
-    margin: 0 auto; /* Garante que fique perfeitamente centralizado */
+    margin: 0 auto;
     display: flex;
     align-items: center;
     background-color: rgba(249, 246, 240, 0.94);
@@ -297,8 +322,6 @@ header.scrolled {
     z-index: 20;
     border-radius: 25px;
     margin-top: 150px;
-
-    /* Animação suave de entrada */
     animation: fadeInSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     opacity: 0;
 }
@@ -338,25 +361,20 @@ header.scrolled {
 }
 
 @keyframes fadeInSlideUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
-
 
 /* =========================================
    SEÇÃO SOBRE A MÉDICA
    ========================================= */
 .about-section {
     width: 100%;
-    padding: 100px 0;
+    padding-top: 50px;
+    padding-bottom: 100px;
     background-color: #F9F6F0;
     position: relative;
+    z-index: 10;
 }
 
 .about-container {
@@ -370,12 +388,19 @@ header.scrolled {
     align-items: center;
 }
 
-/* Coluna da Imagem */
 .about-image-wrapper {
     position: relative;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-image-wrapper.reveal {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .about-image-frame {
@@ -399,32 +424,12 @@ header.scrolled {
     transform: scale(1.03);
 }
 
-/* =========================================
-   ANIMAÇÕES INDEPENDENTES POR SCROLL REVEAL
-   ========================================= */
-
-/* Estado inicial da foto (deslizando da esquerda) */
-.about-image-wrapper {
-    opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.about-image-wrapper.reveal {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Estado inicial do conteúdo de texto (invisível e deslocado para baixo) */
 .about-content > * {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Cascata interna do texto ativada quando o bloco de conteúdo chega na tela */
 .about-content.reveal .badge-container { transition-delay: 0.05s; }
 .about-content.reveal .about-name { transition-delay: 0.15s; }
 .about-content.reveal .about-crm { transition-delay: 0.25s; }
@@ -437,7 +442,6 @@ header.scrolled {
     transform: translateY(0);
 }
 
-/* Card Flutuante Glassmorphism sobre a foto */
 .about-floating-card {
     position: absolute;
     bottom: 24px;
@@ -482,23 +486,9 @@ header.scrolled {
     color: #7c5e54;
 }
 
-/* Coluna de Texto e Identidade */
 .about-content {
     display: flex;
     flex-direction: column;
-}
-
-.section-badge {
-    display: inline-block;
-    width: fit-content;
-    background-color: rgba(107, 79, 70, 0.1);
-    color: #7c5e54;
-    padding: 6px 20px;
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
 }
 
 .about-name {
@@ -558,97 +548,7 @@ header.scrolled {
 }
 
 /* =========================================
-   INTEGRAÇÃO SUAVE ENTRE HERO E SEÇÃO SOBRE
-   ========================================= */
-
-/* 1. Cria um degradê na base da Hero que funde a foto com o fundo #F9F6F0 */
-.hero-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 160px; /* Altura da área de transição suave */
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.562) 60%,
-        #F9F6F0 100%
-    );
-    pointer-events: none; /* Garante que não atrapalhe cliques nos botões ou no carrossel */
-    z-index: 5; /* Fica acima da imagem de fundo, mas abaixo do texto e do carrossel */
-}
-
-/* 2. Garante que o conteúdo e o carrossel fiquem acima do degradê */
-.hero-container {
-    position: relative;
-    z-index: 10;
-}
-
-/* 3. Ajusta o topo da Seção Sobre para encostar perfeitamente sem degrau */
-.about-section {
-    width: 100%;
-    padding-top: 50px; /* Reduzido de 100px para aproximar organicamente da Hero */
-    padding-bottom: 100px;
-    background-color: #F9F6F0;
-    position: relative;
-    z-index: 10;
-}
-
-/* =========================================
-   RESPONSIVIDADE DA SEÇÃO SOBRE (TABLET E MOBILE)
-   ========================================= */
-@media (max-width: 960px) {
-    .about-container {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
-
-    .about-image-wrapper {
-        max-width: 400px;
-    }
-
-    .about-floating-card {
-        right: 10px;
-        bottom: 16px;
-    }
-}
-
-@media (max-width: 750px) {
-    .about-section {
-        padding: 70px 0;
-    }
-
-    .about-name {
-        font-size: 34px;
-    }
-
-    .about-text p {
-        font-size: 15px;
-    }
-
-    .about-action .btn-primary {
-        width: 100%;
-    }
-
-    .about-floating-card {
-        padding: 12px 16px;
-        right: 8px;
-        bottom: 12px;
-    }
-
-    .about-floating-card strong {
-        font-size: 13.5px;
-    }
-
-    .about-floating-card span {
-        font-size: 11.5px;
-    }
-}
-
-
-/* =========================================
-   ESTILOS DO CARROSSEL DE FEEDBACKS (FORÇADO)
+   ESTILOS DO CARROSSEL DE FEEDBACKS (CORRIGIDO)
    ========================================= */
 .feedbacks-section {
     padding: 100px 20px;
@@ -661,44 +561,21 @@ header.scrolled {
     margin: 0 auto;
 }
 
-.feedbacks-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.badge-feedback {
-    display: inline-block;
-    font-size: 0.85rem;
+/* CORREÇÃO DO TÍTULO DOS FEEDBACKS PARA VOCÊ CONSEGUIR ALTERAR A COR DE FORMA PRÁTICA */
+.feedbacks-container .container-topo h2.feedbacks-topo {
+    color: #58473a; /* Mude esta cor livremente quando quiser! */
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #58473a;
-    background-color: rgba(88, 71, 58, 0.08);
-    padding: 6px 16px;
-    border-radius: 50px;
-    margin-bottom: 16px;
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+    margin: 0 0 18px;
 }
 
-.feedbacks-header h2 {
-    font-family: 'Outfit', sans-serif;
-    font-size: 2.4rem;
-    color: #58473a;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.feedbacks-header p {
-    color: #7a6859;
-    font-size: 1.1rem;
-}
-
-/* Área externa que contém o carrossel */
 .feedbacks-wrapper {
     width: 100%;
     position: relative;
 }
 
-/* Grid/Container Horizontal Estrito */
 .feedbacks-grid {
     display: flex !important;
     flex-direction: row !important;
@@ -717,11 +594,10 @@ header.scrolled {
     display: none;
 }
 
-/* Cartão Individual com tamanho exato para caber 3 perfeitamente na tela */
 .feedback-card {
-    flex: 0 0 calc((100% - 60px) / 3) !important; /* Divide o espaço total perfeitamente em 3 partes iguais */
+    flex: 0 0 calc((100% - 60px) / 3) !important;
     width: calc((100% - 60px) / 3) !important;
-    min-width: 280px !important; /* Garante que não esmague em telas menores */
+    min-width: 280px !important;
     background: #FFFFFF;
     padding: 40px 30px;
     border-radius: 20px;
@@ -730,7 +606,6 @@ header.scrolled {
     scroll-snap-align: start;
     box-sizing: border-box;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-    
     opacity: 0;
     transform: translateY(30px);
 }
@@ -783,7 +658,6 @@ header.scrolled {
     margin-top: 2px;
 }
 
-/* Pontinhos de Paginação (Dots) */
 .carousel-dots {
     display: flex;
     justify-content: center;
@@ -814,28 +688,236 @@ header.scrolled {
     transform: scale(1.3);
 }
 
-/* Responsivo para Mobile */
-@media (max-width: 768px) {
-    .feedbacks-section {
-        padding: 60px 16px;
-    }
-    .feedbacks-header h2 {
-        font-size: 2rem;
-    }
-    .feedback-card {
-        flex: 0 0 100% !important;
-        width: 100% !important;
-        min-width: 100% !important;
-        max-width: 100% !important;
-    }
+/* =========================================
+   ÁREAS DE ATUAÇÃO - IDENTIDADE VISUAL
+========================================= */
+.secao-faixas {
+    width: 100%;
+    padding: 100px 0 110px;
+    background: var(--cor-fundo);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
+.container-topo {
+    width: min(1160px, calc(100% - 48px));
+    margin: 0 auto 65px;
+}
+
+.tag-clinica {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--cor-verde);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.tag-clinica::after {
+    content: "";
+    display: block;
+    width: 65px;
+    height: 1px;
+    background: #a6ad9d;
+}
+
+.container-topo h2 {
+    color: var(--cor-texto);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+    margin: 0 0 18px;
+}
+
+.container-topo p {
+    max-width: 550px;
+    color: var(--cor-descricao);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.wrapper-faixas {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.faixa-bloco {
+    width: calc(100% - clamp(25px, 7vw, 110px));
+    position: relative;
+    background: var(--cor-sage);
+    overflow: hidden;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+
+.faixa-bloco:nth-child(odd) {
+    margin-right: auto;
+}
+
+.faixa-bloco:nth-child(even) {
+    margin-left: auto;
+    background: var(--cor-fundo);
+}
+
+.faixa-bloco:nth-child(3n) {
+    background: var(--cor-sage-2);
+}
+
+.js .faixa-bloco {
+    opacity: 0;
+}
+
+.js .faixa-bloco.entra-esquerda {
+    transform: translateX(-65px);
+}
+
+.js .faixa-bloco.entra-direita {
+    transform: translateX(65px);
+}
+
+.js .faixa-bloco.ativo {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.faixa-conteudo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    height: 380px;
+}
+
+.faixa-bloco.invertida .faixa-texto {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.faixa-bloco.invertida .faixa-imagem {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.faixa-texto {
+    padding: 40px clamp(30px, 5vw, 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.faixa-indice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--cor-verde);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+}
+
+.faixa-indice::before {
+    content: "";
+    display: block;
+    width: 37px;
+    height: 1px;
+    background: #6f8b76;
+}
+
+.faixa-texto h3 {
+    color: var(--cor-texto);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    margin: 0 0 12px;
+}
+
+.faixa-texto p {
+    color: var(--cor-descricao);
+    font-size: 0.98rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 20px;
+}
+
+.faixa-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    align-self: flex-start;
+    background: var(--cor-verde-claro);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faixa-botao span {
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: transform 0.3s ease;
+}
+
+.faixa-botao:hover {
+    background: var(--cor-verde);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(7, 60, 48, 0.15);
+}
+
+.faixa-botao:hover span {
+    transform: translateX(4px);
+}
+
+.faixa-imagem {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.faixa-bloco:not(.invertida) .faixa-imagem {
+    box-shadow: -14px 10px 28px rgba(16, 37, 34, 0.14);
+}
+
+.faixa-bloco.invertida .faixa-imagem {
+    box-shadow: 14px 10px 28px rgba(16, 37, 34, 0.14);
+}
+
+.faixa-imagem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.faixa-bloco:hover .faixa-imagem img {
+    transform: scale(1.045);
+}
 
 /* =========================================
-   ESTILOS DO RODAPÉ (4 COLUNAS)
+   ESTILOS DO RODAPÉ
    ========================================= */
 .footer-section {
-    background-color: #58473a; /* Tom terroso escuro oficial da paleta */
+    background-color: #58473a;
     color: #F9F6F0;
     padding: 70px 20px;
     font-family: 'Outfit', sans-serif;
@@ -845,11 +927,10 @@ header.scrolled {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas bem distribuídas */
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
 }
 
-/* Estilo geral das colunas */
 .footer-col h4,
 .footer-col h5 {
     font-size: 1.1rem;
@@ -872,10 +953,9 @@ header.scrolled {
 }
 
 .footer-col a:hover {
-    color: #d4a373; /* Tom dourado de destaque ao passar o mouse */
+    color: #d4a373;
 }
 
-/* Coluna 1: Marca e Contatos */
 .footer-logo-circle {
     width: 60px;
     height: 60px;
@@ -909,7 +989,6 @@ header.scrolled {
     padding-top: 15px;
 }
 
-/* Coluna 2: Menu */
 .footer-col ul {
     list-style: none;
     padding: 0;
@@ -920,14 +999,12 @@ header.scrolled {
     margin-bottom: 10px;
 }
 
-/* Coluna 3: Copyright */
 .footer-legal-text {
     font-size: 0.85rem;
     color: #c9bcba;
     margin-bottom: 15px;
 }
 
-/* Coluna 4: Endereço e Dev */
 .footer-address {
     margin-bottom: 25px;
     font-size: 0.85rem;
@@ -941,24 +1018,6 @@ header.scrolled {
 .footer-dev-name {
     color: #d4a373 !important;
     font-weight: 500;
-}
-
-/* Responsivo para Tablets e Celulares */
-@media (max-width: 900px) {
-    .footer-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
-        gap: 30px;
-    }
-}
-
-@media (max-width: 600px) {
-    .footer-container {
-        grid-template-columns: 1fr; /* 1 coluna empilhada em celulares */
-        text-align: left;
-    }
-    .footer-section {
-        padding: 50px 20px;
-    }
 }
 
 /* =========================================
@@ -978,7 +1037,7 @@ header.scrolled {
     justify-content: center;
     font-size: 32px;
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    z-index: 9999 !important; /* Garante que fique acima de qualquer elemento */
+    z-index: 9999 !important;
     text-decoration: none;
     opacity: 0;
     visibility: hidden;

@@ -242,3 +242,37 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
+
+document.documentElement.classList.add("js");
+
+document.addEventListener("DOMContentLoaded", () => {
+    const faixas = document.querySelectorAll(".faixa-bloco");
+
+    if (!faixas.length) return;
+
+    const movimentoReduzido = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (movimentoReduzido || !("IntersectionObserver" in window)) {
+        faixas.forEach(faixa => faixa.classList.add("ativo"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("ativo");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: "0px 0px -60px 0px",
+        threshold: 0.12
+    });
+
+    faixas.forEach(faixa => {
+        observer.observe(faixa);
+    });
+});
