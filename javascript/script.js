@@ -230,3 +230,15 @@ window.addEventListener('scroll', function() {
             startAutoplay();
         }
     });
+
+    window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    
+    // Se rolar mais de 50 pixels para baixo, adiciona a cor de fundo
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        // Se voltar para o topo (Hero), fica transparente novamente
+        header.classList.remove('scrolled');
+    }
+});

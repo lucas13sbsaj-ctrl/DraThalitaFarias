@@ -25,12 +25,25 @@ header {
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: rgba(237, 238, 226, 0.616); 
-    backdrop-filter: blur(10px);
     z-index: 1000;
     display: flex;
     align-items: center;
-    transition: background-color 0.3s ease;
+    
+    /* Começa com um blur bem leve e um degradê quase invisível de baixo para cima */
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    background: linear-gradient(to top, rgba(253, 252, 252, 0), rgba(163, 163, 139, 0.11));
+    
+    /* Transição suave de 0.5 segundos para tudo */
+    transition: all 0.5s ease;
+}
+
+header.scrolled {
+    /* Ao rolar, assume a cor que você escolheu e aumenta o blur */
+    background: rgba(237, 238, 226, 0.616); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .header-container {
